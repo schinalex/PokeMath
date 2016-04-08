@@ -11,7 +11,8 @@ var reload = browserSync.reload
 var dependencies = ['./node_modules/angular/angular.min.js',
                     './node_modules/angular-aria/angular-aria.min.js',
                     './node_modules/angular-animate/angular-animate.min.js',
-                    './node_modules/angular-material/angular-material.min.js']
+                    './node_modules/angular-material/angular-material.min.js',
+                    './node_modules/angular-material/angular-material.min.css']
 
 gulp.task('serve', function () {
   browserSync.init({
@@ -27,7 +28,7 @@ gulp.task('babel', function () {
 })
 
 gulp.task('sass', function () {
-  gulp.src('./src/style/sass/style.sass')
+  gulp.src('./src/style/style.sass')
     .pipe(sass().on('error', sass.logError))
     .pipe(autoprefixer({
       browsers: ['last 2 versions'],
@@ -75,7 +76,7 @@ gulp.task('fw', function () {
 })
 
 gulp.task('watch', function () {
-  gulp.watch('./src/style/sass/**/*.sass', ['sass'])
+  gulp.watch('./src/style/**/*.sass', ['sass'])
   gulp.watch('./src/js/*.js', ['babel'])
   gulp.watch('./src/*.html', ['html'])
   gulp.watch('./app/*.html').on('change', reload)
