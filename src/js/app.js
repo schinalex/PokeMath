@@ -1,3 +1,5 @@
-console.log('app.js is connected!');
-angular.module('PokeMath', ['ngMaterial'])
-  .run(() => console.log('My app is ready!'))
+var PokeMath = angular.module('PokeMath', ['ngMaterial'])
+
+PokeMath.controller('mainController', ['$scope', '$log', '$mdSidenav',($scope, $log, $mdSidenav) => {
+  $scope.toggleSidebar = () => {$mdSidenav('sidebar').open()}
+}])

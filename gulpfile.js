@@ -12,7 +12,8 @@ var dependencies = ['./node_modules/angular/angular.min.js',
                     './node_modules/angular-aria/angular-aria.min.js',
                     './node_modules/angular-animate/angular-animate.min.js',
                     './node_modules/angular-material/angular-material.min.js',
-                    './node_modules/angular-material/angular-material.min.css']
+                    './node_modules/angular-material/angular-material.min.css',
+                    './node_modules/angular-messages/angular-messages.min.js']
 
 gulp.task('serve', function () {
   browserSync.init({
@@ -45,7 +46,7 @@ gulp.task('html', function () {
 })
 
 gulp.task('img', function () {
-  gulp.src('./src/img/*')
+  gulp.src('./src/img/**/*')
     // I'll do something later... maybe
     .pipe(gulp.dest('./app/img'))
 })
