@@ -24,7 +24,9 @@
     <script src="./vendors/angular-messages.min.js"></script>
     <script src="http://ngmaterial.assets.s3.amazonaws.com/svg-assets-cache.js"></script>
     <!-- math -->
-    <script async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=AM_HTMLorMML"></script>
+    <script async defer src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=AM_HTMLorMML"></script>
+    <!-- drag & drop -->
+    <script src="./vendors/ngDraggable.js"></script>
 
   </head>
 
@@ -60,13 +62,29 @@
           <md-tabs  md-dynamic-height md-border-bottom  md-center-tabs="true">
             <md-tab label="`(a+b)^2`">
               <md-content class="md-padding">
-                <h1 class="md-display-2">Tab One</h1>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-                  venenatis ante augue. Phasellus volutpat neque ac dui mattis vulputate.
-                  Etiam consequat aliquam cursus. In sodales pretium ultrices. Maecenas
-                  lectus est, sollicitudin consectetur felis nec, feugiat ultricies mi.
-                </p>
+                <md-progress-linear class="progressbar" md-mode="determinate" value="40"></md-progress-linear>
+                <div class="" layout="row" layout-align="center center">
+                  <img id="correct" src="./img/correct.png" alt="correct">
+                </div>
+                <div class="question" layout="row" layout-align="center center">
+                  <div class="formula">`(3a+2)^2`</div>
+                  <div class="formula">`=`</div>
+                  <div class="placeholder" ng-drop="true"></div>
+                  <div class="formula">`+`</div>
+                  <div class="placeholder" ng-drop="true"></div>
+                  <div class="formula">`+`</div>
+                  <div class="placeholder" ng-drop="true"></div>
+                </div>
+                <div class="answer" layout="row" layout-align="center center">
+                  <div class="box" ng-drag="true" layout="row" layout-align="center center">`a^2`</div>
+                  <div class="box" ng-drag="true" layout="row" layout-align="center center">`12a`</div>
+                  <div class="box" ng-drag="true" layout="row" layout-align="center center">`4`</div>
+                  <div class="box" ng-drag="true" layout="row" layout-align="center center">`3`</div>
+                  <div class="box" ng-drag="true" layout="row" layout-align="center center">`2a`</div>
+                  <div class="box" ng-drag="true" layout="row" layout-align="center center">`9a^2`</div>
+                  <div class="box" ng-drag="true" layout="row" layout-align="center center">`4a^2`</div>
+                  <div class="box" ng-drag="true" layout="row" layout-align="center center">`6`</div>
+                </div>
               </md-content>
             </md-tab>
             <md-tab label="`(a-b)^2`">
