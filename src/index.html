@@ -35,15 +35,49 @@
 
     <div class="container" layout="row" flex>
       <md-sidenav id="sidebar" md-component-id="sidebar" ng-model="sideNavOpen">
+
+        <!-- <div class="menu-container" layout-align="start center" layout="column">
+          <div class="menus" layout-wrap="" layout="row" layout-fill="" layout-align="space-between center" style="min-height:100px;">
+              <div layout="column" flex="33" flex-sm="100" layout-align="center center">
+                <p>Wide menu (<code>width=6</code>)</p>
+                <md-menu >
+                  <md-button aria-label="Open demo menu" class="md-icon-button" >
+                    <md-icon md-menu-origin=""></md-icon>
+                  </md-button>
+                  <md-menu-content width="6">
+                    <md-menu-item>
+                      <md-button> <span md-menu-align-target="">Option</span> Home </md-button>
+                    </md-menu-item>
+                  </md-menu-content>
+                </md-menu>
+            </div>
+          </div>
+        </div> -->
+
+
         <!-- <md-toolbar class="md-theme-indigo">
           <h1 class="md-toolbar-tools">Sidenav</h1>
         </md-toolbar> -->
-        <ul>
-          <li>Home</li>
-          <li>Game</li>
-          <li>About</li>
-          <li>Contact</li>
-        </ul>
+        <img id="logo" src="./img/logo.png" alt="logo">
+        <nav>
+          <md-menu>
+            <md-menu-content width="4" layout="column">
+              <md-menu-item>
+                <md-button>Home</md-button>
+              </md-menu-item>
+              <md-menu-item>
+                <md-button>Game</md-button>
+              </md-menu-item>
+              <md-menu-item>
+                <md-button>About</md-button>
+              </md-menu-item>
+              <md-menu-item>
+                <md-button>Contact</md-button>
+              </md-menu-item>
+            </md-menu-content>
+          </md-menu>
+        </nav>
+
       </md-sidenav>
       <md-content id="content" flex>
         <md-toolbar id="navigation" layout="row" layout-align="space-between center">
