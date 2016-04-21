@@ -24,41 +24,22 @@
     <script src="./vendors/angular-messages.min.js"></script>
     <script src="http://ngmaterial.assets.s3.amazonaws.com/svg-assets-cache.js"></script>
     <!-- math -->
+    <script async src="./js/formule.js"></script>
     <script async defer src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=AM_HTMLorMML"></script>
     <!-- drag & drop -->
     <script src="./vendors/ngDraggable.js"></script>
 
   </head>
 
-  <body ng-controller="mainController" layout="column">
-
+  <body ng-controller="mainCtrl" layout="column">
 
     <div class="container" layout="row" flex>
-      <md-sidenav id="sidebar" md-component-id="sidebar" ng-model="sideNavOpen">
+      <md-sidenav id="sidebar" md-component-id="sidebar" ng-controller="sidenavCtrl" ng-model="sideNavOpen">
 
-        <!-- <div class="menu-container" layout-align="start center" layout="column">
-          <div class="menus" layout-wrap="" layout="row" layout-fill="" layout-align="space-between center" style="min-height:100px;">
-              <div layout="column" flex="33" flex-sm="100" layout-align="center center">
-                <p>Wide menu (<code>width=6</code>)</p>
-                <md-menu >
-                  <md-button aria-label="Open demo menu" class="md-icon-button" >
-                    <md-icon md-menu-origin=""></md-icon>
-                  </md-button>
-                  <md-menu-content width="6">
-                    <md-menu-item>
-                      <md-button> <span md-menu-align-target="">Option</span> Home </md-button>
-                    </md-menu-item>
-                  </md-menu-content>
-                </md-menu>
-            </div>
-          </div>
-        </div> -->
+        <md-toolbar class="md-theme-indigo">
+          <img id="logo" src="./img/logo.png" alt="logo">
+        </md-toolbar>
 
-
-        <!-- <md-toolbar class="md-theme-indigo">
-          <h1 class="md-toolbar-tools">Sidenav</h1>
-        </md-toolbar> -->
-        <img id="logo" src="./img/logo.png" alt="logo">
         <nav>
           <md-menu>
             <md-menu-content width="4" layout="column">
@@ -79,6 +60,7 @@
         </nav>
 
       </md-sidenav>
+
       <md-content id="content" flex>
         <md-toolbar id="navigation" layout="row" layout-align="space-between center">
 
@@ -93,7 +75,9 @@
           </md-button>
 
         </md-toolbar>
-          <md-tabs  md-dynamic-height md-border-bottom  md-center-tabs="true">
+          <md-tabs  ng-controller="gameCtrl" md-dynamic-height md-border-bottom  md-center-tabs="true">
+
+
             <md-tab label="`(a+b)^2`">
               <md-content class="md-padding">
                 <md-progress-linear class="progressbar" md-mode="determinate" value="40"></md-progress-linear>
@@ -121,17 +105,35 @@
                 </div>
               </md-content>
             </md-tab>
-            <md-tab label="`(a-b)^2`">
+
+
+            <!-- <md-tab label="{{ label }}">
               <md-content class="md-padding">
-                <h1 class="md-display-2">Tab Two</h1>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-                  venenatis ante augue. Phasellus volutpat neque ac dui mattis vulputate.
-                  Etiam consequat aliquam cursus. In sodales pretium ultrices. Maecenas
-                  lectus est, sollicitudin consectetur felis nec, feugiat ultricies mi.
-                </p>
+
+                <md-progress-linear class="progressbar" md-mode="determinate" value="{{ progress }}"></md-progress-linear>
+
+                <div class="" ng-hide layout="row" layout-align="center center">
+                  <img id="correct" src="./img/correct.png" alt="correct">
+                </div>
+
+                <div class="question" layout="row" layout-align="center center">
+                  <div class="formula"> {{ formula }} </div>
+                  <div class="formula">`=`</div>
+                  <div class="placeholder" ng-drop="true"> {{ correctAnswers[0] }} </div>
+                  <div class="formula">`+`</div>
+                  <div class="placeholder" ng-drop="true"> {{ correctAnswers[1] }} </div>
+                  <div class="formula">`+`</div>
+                  <div class="placeholder" ng-drop="true"> {{ correctAnswers[2] }} </div>
+                </div>
+
+                <div class="answer" ng-repeat="answer in answers" layout="row" layout-align="center center">
+                  <div class="box" ng-drag="true" layout="row" layout-align="center center"> {{ answer }} </div>
+                </div>
+
               </md-content>
-            </md-tab>
+            </md-tab> -->
+
+
             <md-tab label="`a^2-b^2`">
               <md-content class="md-padding">
                 <h1 class="md-display-2">Tab Three</h1>
