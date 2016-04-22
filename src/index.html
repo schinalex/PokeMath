@@ -24,63 +24,36 @@
     <script src="./vendors/angular-messages.min.js"></script>
     <script src="http://ngmaterial.assets.s3.amazonaws.com/svg-assets-cache.js"></script>
     <!-- math -->
-    <script async defer src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=AM_HTMLorMML"></script>
+    <script src="./js/formule.js"></script>
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=AM_HTMLorMML"></script>
     <!-- drag & drop -->
     <script src="./vendors/ngDraggable.js"></script>
 
   </head>
 
-  <body ng-controller="mainController" layout="column">
-
+  <body  layout="column" ng-controller="mainCtrl">
 
     <div class="container" layout="row" flex>
-      <md-sidenav id="sidebar" md-component-id="sidebar" ng-model="sideNavOpen">
 
-        <!-- <div class="menu-container" layout-align="start center" layout="column">
-          <div class="menus" layout-wrap="" layout="row" layout-fill="" layout-align="space-between center" style="min-height:100px;">
-              <div layout="column" flex="33" flex-sm="100" layout-align="center center">
-                <p>Wide menu (<code>width=6</code>)</p>
-                <md-menu >
-                  <md-button aria-label="Open demo menu" class="md-icon-button" >
-                    <md-icon md-menu-origin=""></md-icon>
-                  </md-button>
-                  <md-menu-content width="6">
-                    <md-menu-item>
-                      <md-button> <span md-menu-align-target="">Option</span> Home </md-button>
-                    </md-menu-item>
-                  </md-menu-content>
-                </md-menu>
-            </div>
-          </div>
-        </div> -->
+        <md-sidenav id="sidebar" class="md-whiteframe-1dp" md-component-id="sidebar" >
 
+          <nav ng-model="sideNavOpen">
+            <md-toolbar class="md-whiteframe-1dp">
+              <img id="logo" src="./img/logo.png" alt="logo">
+            </md-toolbar>
 
-        <!-- <md-toolbar class="md-theme-indigo">
-          <h1 class="md-toolbar-tools">Sidenav</h1>
-        </md-toolbar> -->
-        <img id="logo" src="./img/logo.png" alt="logo">
-        <nav>
-          <md-menu>
-            <md-menu-content width="4" layout="column">
-              <md-menu-item>
-                <md-button>Home</md-button>
-              </md-menu-item>
-              <md-menu-item>
-                <md-button>Game</md-button>
-              </md-menu-item>
-              <md-menu-item>
-                <md-button>About</md-button>
-              </md-menu-item>
-              <md-menu-item>
-                <md-button>Contact</md-button>
-              </md-menu-item>
-            </md-menu-content>
-          </md-menu>
-        </nav>
+            <!-- <ul layout="column" layout-align="center">
+              <li><a href="#">Home</a></li>
+              <li><a href="#">Game</a></li>
+              <li><a href="#">About</a></li>
+              <li><a href="#">Contact</a></li>
+            </ul> -->
+          </nav>
 
-      </md-sidenav>
+        </md-sidenav>
+
       <md-content id="content" flex>
-        <md-toolbar id="navigation" layout="row" layout-align="space-between center">
+        <md-toolbar id="navigation" class="md-whiteframe-6dp" layout="row" layout-align="space-between center">
 
           <md-button ng-click="toggleSidebar()" class="md-icon-button" aria-label="Settings">
             <md-icon md-svg-icon="./img/icons/menu.svg"></md-icon>
@@ -93,7 +66,11 @@
           </md-button>
 
         </md-toolbar>
-          <md-tabs  md-dynamic-height md-border-bottom  md-center-tabs="true">
+
+        <div ng-controller="gameCtrl">
+          <md-tabs  class="" md-dynamic-height md-border-bottom  md-center-tabs="true" >
+
+
             <md-tab label="`(a+b)^2`">
               <md-content class="md-padding">
                 <md-progress-linear class="progressbar" md-mode="determinate" value="40"></md-progress-linear>
@@ -121,26 +98,38 @@
                 </div>
               </md-content>
             </md-tab>
-            <md-tab label="`(a-b)^2`">
+
+
+            <md-tab label="{{ label }}">
               <md-content class="md-padding">
-                <h1 class="md-display-2">Tab Two</h1>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-                  venenatis ante augue. Phasellus volutpat neque ac dui mattis vulputate.
-                  Etiam consequat aliquam cursus. In sodales pretium ultrices. Maecenas
-                  lectus est, sollicitudin consectetur felis nec, feugiat ultricies mi.
-                </p>
+
+                <md-progress-linear class="progressbar" md-mode="determinate" value="{{ progress }}"></md-progress-linear>
+
+                <div class="" ng-hide layout="row" layout-align="center center">
+                  <img id="correct" src="./img/correct.png" alt="correct">
+                </div>
+
+                <div class="question" layout="row" layout-align="center center">
+                  <div class="formula"> {{ formula }} </div>
+                  <div class="formula">`=`</div>
+                  <div class="placeholder" ng-drop="true" ng-drop-success="onDropComplete($data,$event)"> {{ correctAnswers[0] }} </div>
+                  <div class="formula">`+`</div>
+                  <div class="placeholder" ng-drop="true" ng-drop-success="onDropComplete($data,$event)"> {{ correctAnswers[1] }} </div>
+                  <div class="formula">`+`</div>
+                  <div class="placeholder" ng-drop="true" ng-drop-success="onDropComplete($data,$event)"> {{ correctAnswers[2] }} </div>
+                </div>
+
+                <div class="answer" layout="row" layout-align="center center">
+                  <div class="box"  ng-repeat="answer in answers" ng-drag="true" ng-drag-data="{obj: 'wow'}" ng-drag-success="onDragComplete($data,$event)" ng-center-anchor="true" layout="row" layout-align="center center"> {{ answer }} </div>
+                </div>
+
               </md-content>
             </md-tab>
+
+
             <md-tab label="`a^2-b^2`">
-              <md-content class="md-padding">
-                <h1 class="md-display-2">Tab Three</h1>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-                  venenatis ante augue. Phasellus volutpat neque ac dui mattis vulputate.
-                  Etiam consequat aliquam cursus. In sodales pretium ultrices. Maecenas
-                  lectus est, sollicitudin consectetur felis nec, feugiat ultricies mi.
-                </p>
+              <md-content class="md-padding"  ng-include="'game.html'">
+
               </md-content>
             </md-tab>
             <md-tab label="`(a+b)^3`">
@@ -188,11 +177,12 @@
               </md-content>
             </md-tab>
           </md-tabs>
+        </div>
+
       </md-content>
     </div>
 
   </body>
-
 
   <!-- my js -->
   <script src="./js/app.js"></script>

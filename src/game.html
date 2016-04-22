@@ -1,0 +1,20 @@
+
+  <md-progress-linear class="progressbar" md-mode="determinate" value="{{ progress }}"></md-progress-linear>
+
+  <div class="" ng-hide layout="row" layout-align="center center">
+    <img id="correct" src="./img/correct.png" alt="correct">
+  </div>
+
+  <div class="question" layout="row" layout-align="center center">
+    <div class="formula"> {{ formula }} </div>
+    <div class="formula">`=`</div>
+    <div class="placeholder" ng-drop="true" ng-drop-success="onDropComplete($data,$event)"> {{ correctAnswers[0] }} </div>
+    <div class="formula">`+`</div>
+    <div class="placeholder" ng-drop="true" ng-drop-success="onDropComplete($data,$event)"> {{ correctAnswers[1] }} </div>
+    <div class="formula">`+`</div>
+    <div class="placeholder" ng-drop="true" ng-drop-success="onDropComplete($data,$event)"> {{ correctAnswers[2] }} </div>
+  </div>
+
+  <div class="answer" layout="row" layout-align="center center">
+    <div class="box"  ng-repeat="answer in answers" ng-drag="true" ng-drag-data="{obj: 'wow'}" ng-drag-success="onDragComplete($data,$event)" ng-center-anchor="true" layout="row" layout-align="center center"> {{ answer }} </div>
+  </div>
