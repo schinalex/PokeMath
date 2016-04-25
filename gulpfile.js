@@ -41,7 +41,7 @@ gulp.task('sass', function () {
 })
 
 gulp.task('html', function () {
-  gulp.src('./src/*.html')
+  gulp.src('./src/**/*.html')
     // I'll do something later... maybe
     .pipe(gulp.dest('./app/'))
 })

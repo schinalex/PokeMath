@@ -23,6 +23,7 @@
     <script src="./vendors/angular-material.min.js"></script>
     <script src="./vendors/angular-messages.min.js"></script>
     <script src="http://ngmaterial.assets.s3.amazonaws.com/svg-assets-cache.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-route.js"></script>
     <!-- math -->
     <script src="./js/formule.js"></script>
     <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=AM_HTMLorMML"></script>
@@ -33,7 +34,7 @@
 
   <body  layout="column" ng-controller="mainCtrl">
 
-    <div class="container" layout="row" flex>
+    <div class="container" layout="column" layout-align="center center" flex>
 
         <md-sidenav id="sidebar" class="md-whiteframe-1dp" md-component-id="sidebar" >
 
@@ -43,17 +44,15 @@
             </md-toolbar>
 
             <ul layout="column" layout-align="center">
-              <li><a href="#">Home</a></li>
-              <li><a href="#">Game</a></li>
-              <li><a href="#">About</a></li>
-              <li><a href="#">Contact</a></li>
+              <li><a href="#home" ng-click="currentPage = 'home'">Home</a></li>
+              <li><a href="#game" ng-click="currentPage = 'game'">Game</a></li>
+              <li><a href="#about" ng-click="currentPage = 'about'">About</a></li>
+              <li><a href="#contact" ng-click="currentPage = 'contact'">Contact</a></li>
             </ul>
-            
+
           </nav>
 
         </md-sidenav>
-
-      <md-content id="content" flex>
         <md-toolbar id="navigation" class="md-whiteframe-6dp" layout="row" layout-align="space-between center">
 
           <md-button ng-click="toggleSidebar()" class="md-icon-button" aria-label="Settings">
@@ -67,32 +66,12 @@
           </md-button>
 
         </md-toolbar>
+      <md-content id="content" class="md-whiteframe-2dp" ng-view flex>
 
-        <div ng-controller="gameCtrl">
-          <md-tabs  class="" md-dynamic-height md-border-bottom  md-center-tabs="true" >
-            <md-tab label="`(a+b)^2`">
-              <md-content class="md-padding"  ng-include="'game.html'"></md-content>
-            </md-tab>
-            <md-tab label="`(a-b)^2`">
-              <md-content class="md-padding"  ng-include="'game.html'"></md-content>
-            </md-tab>
-            <md-tab label="`a^2-b^2`">
-              <md-content class="md-padding"  ng-include="'game.html'"></md-content>
-            </md-tab>
-            <md-tab label="`(a+b)^3`">
-              <md-content class="md-padding"  ng-include="'game.html'"></md-content>
-            </md-tab>
-            <md-tab label="`(a-b)^3`">
-              <md-content class="md-padding"  ng-include="'game.html'"></md-content>
-            </md-tab>
-            <md-tab label="`a^3+b^3`">
-              <md-content class="md-padding"  ng-include="'game.html'"></md-content>
-            </md-tab>
-            <md-tab label="`a^3-b^3`">
-              <md-content class="md-padding"  ng-include="'game.html'"></md-content>
-            </md-tab>
-          </md-tabs>
-        </div>
+          <div ng-if="currentPage === 'game'" ng-include="'./pages/game.html'"  ng-controller="gameCtrl"></div>
+          <div ng-if="currentPage === 'home'" ng-include="'./pages/home.html'"></div>
+          <div ng-if="currentPage === 'about'" ng-include="'./pages/about.html'"></div>
+          <div ng-if="currentPage === 'contact'" ng-include="'./pages/contact.html'"></div>
 
       </md-content>
     </div>
