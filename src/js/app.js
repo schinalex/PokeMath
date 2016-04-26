@@ -1,11 +1,30 @@
 var PokeMath = angular.module('PokeMath', ['ngMaterial', 'ngRoute', 'ngDraggable'])
 
-PokeMath.controller('mainCtrl', ['$scope', '$log', '$mdSidenav', '$route', '$location', '$routeParams', ($scope, $log, $mdSidenav, $route, $location, $routeParams) => {
+PokeMath.config(($routeProvider) => {
+  $routeProvider
+  .when('/', {
+    templateUrl: '../pages/home.html'
+  })
+  .when('/home', {
+    templateUrl: '../pages/home.html'
+  })
+  .when('/game', {
+    templateUrl: '../pages/game.html',
+    controller: 'gameCtrl'
+  })
+  .when('/about', {
+    templateUrl: '../pages/about.html'
+  })
+  .when('/contact', {
+    templateUrl: '../pages/contact.html'
+  })
+})
+
+PokeMath.controller('mainCtrl', ['$scope', '$log', '$mdSidenav', '$location', ($scope, $log, $mdSidenav, $location) => {
   $scope.toggleSidebar = () => {$mdSidenav('sidebar').open()}
-  $scope.currentPage = 'game'
-  $scope.$route = $route
-  $scope.$location = $location
-  $scope.$routeParams = $routeParams
+  $scope.go = (path) => {
+    $location.path(path)
+  }
 }])
 
 PokeMath.controller('gameCtrl', ['$scope', '$log', ($scope, $log) => {
@@ -16,6 +35,7 @@ PokeMath.controller('gameCtrl', ['$scope', '$log', ($scope, $log) => {
   $scope.formula = formulas.formula.variante[$scope.variant].ab
   $scope.correctAnswers = formulas.formula.variante[$scope.variant].raspunsuriCorecte
   $scope.answers = formulas.formula.variante[$scope.variant].raspunsuri
+
 
   $scope.onDragComplete = (data,evt) => {
     console.log("drag success, data:", data)

@@ -36,44 +36,53 @@
 
     <div class="container" layout="column" layout-align="center center" flex>
 
-        <md-sidenav id="sidebar" class="md-whiteframe-1dp" md-component-id="sidebar" >
+      <md-sidenav id="sidebar" class="md-whiteframe-1dp" md-component-id="sidebar" >
 
-          <nav ng-model="sideNavOpen">
-            <md-toolbar class="md-whiteframe-1dp">
-              <img id="logo" src="./img/logo.png" alt="logo">
-            </md-toolbar>
+        <nav ng-model="sideNavOpen">
+          <md-toolbar class="md-whiteframe-1dp" ng-click="console.log('clicked');window.location.href='#/home'">
+            <img id="logo" src="./img/logo.png" alt="logo" >
+          </md-toolbar>
 
-            <ul layout="column" layout-align="center">
-              <li><a href="#home" ng-click="currentPage = 'home'">Home</a></li>
-              <li><a href="#game" ng-click="currentPage = 'game'">Game</a></li>
-              <li><a href="#about" ng-click="currentPage = 'about'">About</a></li>
-              <li><a href="#contact" ng-click="currentPage = 'contact'">Contact</a></li>
-            </ul>
+          <ul layout="column">
+            <li>
+              <md-button ng-click="go('home')">
+                <a href="#home">Home</a>
+              </md-button>
+            </li>
+            <li>
+              <md-button ng-click="go('game')">
+                <a href="#game">Game</a>
+              </md-button>
+            </li>
+            <li>
+              <md-button ng-click="go('about')">
+                <a href="#about">About</a>
+              </md-button>
+            </li>
+            <li>
+              <md-button ng-click="go('contact')">
+                <a href="#contact">Contact</a>
+              </md-button>
+            </li>
+          </ul>
 
-          </nav>
+        </nav>
 
-        </md-sidenav>
-        <md-toolbar id="navigation" class="md-whiteframe-6dp" layout="row" layout-align="space-between center">
+      </md-sidenav>
+      <md-toolbar id="navigation" class="md-whiteframe-6dp" layout="row" layout-align="space-between center">
 
-          <md-button ng-click="toggleSidebar()" class="md-icon-button" aria-label="Settings">
-            <md-icon md-svg-icon="./img/icons/menu.svg"></md-icon>
-          </md-button>
+        <md-button ng-click="toggleSidebar()" class="md-icon-button" aria-label="Settings">
+          <md-icon md-svg-icon="./img/icons/menu.svg"></md-icon>
+        </md-button>
 
-          <p>PokeMath</p>
+        <p>PokeMath</p>
 
-          <md-button class="md-fab md-raised md-hue-2" aria-label="Profile" layout-align="center center">
-            <img style="margin-top: 8px;"src="./img/brain.png"></img>
-          </md-button>
+        <md-button class="md-fab md-raised md-hue-2" aria-label="Profile" layout-align="center center">
+          <img style="margin-top: 8px;"src="./img/brain.png"></img>
+        </md-button>
 
-        </md-toolbar>
-      <md-content id="content" class="md-whiteframe-2dp" ng-view flex>
-
-          <div ng-if="currentPage === 'game'" ng-include="'./pages/game.html'"  ng-controller="gameCtrl"></div>
-          <div ng-if="currentPage === 'home'" ng-include="'./pages/home.html'"></div>
-          <div ng-if="currentPage === 'about'" ng-include="'./pages/about.html'"></div>
-          <div ng-if="currentPage === 'contact'" ng-include="'./pages/contact.html'"></div>
-
-      </md-content>
+      </md-toolbar>
+      <md-content id="content" class="md-whiteframe-2dp" ng-view flex></md-content>
     </div>
 
   </body>
