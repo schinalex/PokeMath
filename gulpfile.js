@@ -80,10 +80,10 @@ gulp.task('fw', function () {
 gulp.task('watch', function () {
   gulp.watch('./src/style/**/*.sass', ['sass'])
   gulp.watch('./src/js/*.js', ['babel'])
-  gulp.watch('./src/*.html', ['html'])
+  gulp.watch('./src/**/*.html', ['html'])
   gulp.watch('./app/*.html').on('change', reload)
   gulp.watch('./app/js/*.js').on('change', reload)
-  gulp.watch('./src/img/*', ['img'])
+  gulp.watch('./src/img/', ['img'])
 })
 
 gulp.task('default', ['fw', 'serve', 'sass', 'babel', 'html', 'img', 'vendors', 'watch'])
