@@ -1,4 +1,3 @@
-<!-- <div ng-controller="gameCtrl"> -->
   <md-tabs  class="" md-dynamic-height md-border-bottom  md-center-tabs="true" >
     <md-tab label="{{ label }}" ng-repeat="label in labels">
       <md-content class="md-padding">
@@ -21,10 +20,6 @@
         <div class="answer" layout="row" layout-align="center center">
           <div class="box"  ng-repeat="answer in answers" ng-drag="true" ng-drag-data="{obj: 'wow'}" ng-drag-success="onDragComplete($data,$event)" ng-center-anchor="true" layout="row" layout-align="center center"> {{ answer }} </div>
         </div>
-        
+
       </md-content>
     </md-tab>
-    <script>
-      MathJax.Hub.Queue(["Typeset",MathJax.Hub])
-    </script>
-<!-- </div> -->

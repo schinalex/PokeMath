@@ -1,3 +1,41 @@
-<div layout="column" layout-align="start center">
-  <h1>Contact page</h1>
-</div>
+<md-content class="md-padding"  layout="column" layout-align="center center">
+
+  <p layout="column" layout-align="center center">
+    <span class="question">Do you have any suggestions?</span>
+    <span class="action">Contact us:</span>
+  </p>
+
+  <form role="form" id="contact-form" layout="column">
+    
+    <md-input-container>
+      <label for="name" >Name:</label>
+        <input type="text" id="name" placeholder="Name" required>
+    </md-input-container>
+
+    <md-input-container>
+      <label for="email" >Email address:</label>
+      <input type="email" id="email" placeholder="Email" required>
+    </md-input-container>
+
+    <md-input-container>
+      <label for="phone">Phone number:</label>
+      <input type="number" id="phone" placeholder="Phone number">
+    </md-input-container>
+
+    <md-input-container>
+      <label for="subject">Subject:</label>
+      <input type="text" id="subject" placeholder="Subject" required>
+    </md-input-container>
+
+    <md-input-container>
+      <label for="description">Description:</label>
+      <textarea rows="5" id="description" placeholder="Detailed description" required></textarea>
+    </md-input-container>
+
+    <div layout="column" layout-align="start center">
+      <md-button type="submit" class="md-raised md-primary" id="submit">Submit</md-button>
+    </div>
+
+  </form>
+
+</md-content>

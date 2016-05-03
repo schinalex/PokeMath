@@ -20,11 +20,16 @@ PokeMath.config(($routeProvider) => {
   })
 })
 
-PokeMath.controller('mainCtrl', ['$scope', '$log', '$mdSidenav', '$location', ($scope, $log, $mdSidenav, $location) => {
+PokeMath.controller('mainCtrl', ['$scope', '$log', '$timeout', '$mdSidenav', '$location', ($scope, $log, $timeout, $mdSidenav, $location) => {
+  $scope.$timeout = $timeout
   $scope.toggleSidebar = () => {$mdSidenav('sidebar').open()}
-  $scope.go = (path) => {
-    $location.path(path)
-  }
+  $scope.go = (path) => {$location.path(path)}
+  // $scope.start = () => {$timeout(() => {$scope.go('game')}, 200)}
+  $scope.$on('$viewContentLoaded', function() {
+    $timeout(function() {
+     MathJax.Hub.Queue(["Typeset",MathJax.Hub])
+   }, 0)
+  })
 }])
 
 PokeMath.controller('gameCtrl', ['$scope', '$log', ($scope, $log) => {
