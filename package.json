@@ -33,6 +33,8 @@
     "angular-draganddrop": "^0.2.2",
     "angular-material": "^1.0.7",
     "angular-route": "^1.5.3",
+    "express": "^4.13.4",
+    "mysql": "^2.10.2",
     "ng-draggable": "^1.0.0"
   }
 }

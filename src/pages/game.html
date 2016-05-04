@@ -18,7 +18,7 @@
         </div>
 
         <div class="answer" layout="row" layout-align="center center">
-          <div class="box"  ng-repeat="answer in answers" ng-drag="true" ng-drag-data="{obj: 'wow'}" ng-drag-success="onDragComplete($data,$event)" ng-center-anchor="true" layout="row" layout-align="center center"> {{ answer }} </div>
+          <div class="box"  ng-repeat="answer in answers" ng-drag="true" ng-drag-data="'{{ answer }}'" ng-drag-success="onDragComplete($data,$event)" ng-center-anchor="true" layout="row" layout-align="center center"> {{ answer }} </div>
         </div>
 
       </md-content>

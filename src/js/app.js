@@ -43,9 +43,13 @@ PokeMath.controller('gameCtrl', ['$scope', '$log', ($scope, $log) => {
 
 
   $scope.onDragComplete = (data,evt) => {
-    console.log("drag success, data:", data)
+    // console.log("drag success, data:", data)
+    console.log(evt.element[0])
+    evt.element[0].classList.add('ng-hide')
   }
   $scope.onDropComplete = (data,evt) => {
-    console.log("drop success, data:", data)
+    // console.log("drop success, data:", data)
+    console.log(evt)
+
   }
 }])
